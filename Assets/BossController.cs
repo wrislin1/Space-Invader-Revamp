@@ -8,16 +8,18 @@ public class BossController : MonoBehaviour
     public ushort fireRate;
     public GameObject missle;
     GameObject player;
-    bool right, left;
+    bool right, left, isDamaged;
     public ushort health;
-    int n,i;
+    int n, i, k;
     // Start is called before the first frame update
     void Start()
     {
         right = true;
         left = false;
+        isDamaged = false;
         n = 0;
         i = 0;
+        k = 0;
         
     }
 
@@ -27,6 +29,7 @@ public class BossController : MonoBehaviour
 
         target();
         move();
+        checkHealth();
 
 
     }
@@ -56,7 +59,7 @@ public class BossController : MonoBehaviour
 
         if (System.Math.Floor(x) != System.Math.Floor(player.transform.position.x))
         {
-
+            k++;
 
             if (right)
             {
@@ -75,20 +78,21 @@ public class BossController : MonoBehaviour
             {
                 if(x>xp)
                 {
-                gameObject.transform.position = new Vector3((x + .025f), (y), 0);
+                gameObject.transform.position = new Vector3((x - .025f), (y), 0);
                 n++;
                 }
                 else{
-                gameObject.transform.position = new Vector3((x - .025f), (y), 0);
+                gameObject.transform.position = new Vector3((x + .025f), (y), 0);
                 n++;
                 }
             }
 
-            /*    if(n>=100)
-                {
-                    Debug.Log("N: "+n);
-                    gameObject.transform.position = new Vector3(xp, gameObject.transform.position.y, 0);
-                }*/
+            if (k >= 200)
+            {
+                gameObject.transform.position = new Vector3(xp, gameObject.transform.position.y, 0);
+                k = 0;
+
+            }
         }
 
         else if(n>interval)
@@ -114,13 +118,13 @@ public class BossController : MonoBehaviour
             i=0;
             if (gameObject.transform.position.x>0)
             {
-                right=false;
-                left=true;
+                right=true;
+                left=false;
             }
             else if(gameObject.transform.position.x<0)
             {
-                left=false;
-                right=true;
+                left=true;
+                right=false;
             }
 
            Instantiate(missle, new Vector3((x),(y-1f), 0f), Quaternion.identity);
@@ -128,6 +132,22 @@ public class BossController : MonoBehaviour
                   
         }
         
+        }
+    }
+
+    void checkHealth()
+    {
+        if(health<=10)
+        {
+            isDamaged = true;
+            if(right)
+            {
+                gameObject.transform.position = new Vector3(-18f, gameObject.transform.position.y, 0);
+            }
+            else if(left)
+            {
+                gameObject.transform.position = new Vector3(18f, gameObject.transform.position.y, 0);
+            }
         }
     }
 }

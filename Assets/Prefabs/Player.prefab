@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 8656971770801237642}
-  speed: 4
+  speed: 5
   bullet: {fileID: 3828900889356519161, guid: d417a5e7c7f7edc48ab2bb0341719bd2, type: 3}
   health: 1000
   mytext: {fileID: 0}
