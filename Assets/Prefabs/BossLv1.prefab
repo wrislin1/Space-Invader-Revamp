@@ -48,6 +48,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -59,6 +60,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -144,4 +146,5 @@ MonoBehaviour:
   interval: 150
   fireRate: 15
   missle: {fileID: 2074408415876824359, guid: bb21f2fa819d6e8459e70d076bb1e19a, type: 3}
+  mooks: {fileID: 7984305207242471543, guid: 5cccb7f4a6e0072498382ebbf5c992d6, type: 3}
   health: 25
