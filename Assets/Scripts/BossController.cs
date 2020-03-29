@@ -9,7 +9,7 @@ public class BossController : MonoBehaviour
     public GameObject missle;
     GameObject player;
     public GameObject mooks;
-    bool right, left, isDamaged,notSummoned;
+    bool right, left, isDamaged,notSummoned,teleported;
     public ushort health;
     int n, i, k,h;
 
@@ -36,7 +36,10 @@ public class BossController : MonoBehaviour
             target();
             move();
         }
-        checkHealth();
+        if(!teleported)
+        {
+            checkHealth();
+        }
 
 
     }
@@ -144,6 +147,7 @@ public class BossController : MonoBehaviour
 
     void checkHealth()
     {
+
         if(health<=10)
         {
             isDamaged = true;
@@ -167,27 +171,32 @@ public class BossController : MonoBehaviour
 
         if(h>=100)
         {
+            teleported = true;
             h = 0;
             health = 20;
             isDamaged = false;
             float xp = GameObject.FindWithTag("Player").transform.position.x;
             gameObject.transform.position = new Vector3(xp, gameObject.transform.position.y, 0);
+
         }
     }
 
     void summonMooks()
     {
         float l = 0f;
+        float m = 0f;
         if (notSummoned)
         {
             notSummoned = false;
             for (int j = 0; j < 24; j++)
             {
-                if (j % 4 == 0)
+                m++;
+                if (j % 8 == 0)
                 {
                     l++;
+                    m = 1;
                 }
-                Instantiate(mooks, new Vector3(-8f + (j), 5f - l, 0f), Quaternion.identity);
+                Instantiate(mooks, new Vector3(-8f + (m*1.5f), 5f - (l*1.5f), 0f), Quaternion.identity);
             }
         }
     }

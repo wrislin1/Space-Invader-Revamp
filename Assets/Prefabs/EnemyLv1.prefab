@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missle: {fileID: 1294656190100128399, guid: 472f542c710413441a5c41bf26877646, type: 3}
   interval: 150
+  FireRate: 120
   health: 1
   speed: 1
 --- !u!61 &61913033836332354

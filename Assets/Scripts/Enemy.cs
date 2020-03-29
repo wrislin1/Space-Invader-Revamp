@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public GameObject missle;
-    public int interval;
+    public int interval,FireRate;
     bool right, left;
     int n,i;
     public ushort health;
@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
         if(player!=null)
         {
 
-        if(System.Math.Floor(x)==System.Math.Floor(player.transform.position.x)&&(i>30))
+        if(System.Math.Floor(x)==System.Math.Floor(player.transform.position.x)&&(i>FireRate))
         {
             i=0;
             Instantiate(missle, new Vector3((x),(y-1f), 0f), Quaternion.identity);
